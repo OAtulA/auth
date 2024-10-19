@@ -22,4 +22,11 @@ router.get("/logout", (req, res) => {
   });
 });
 
+const {authenticateJWT} = require('../utils/jwt')
+// Example of a protected route
+router.get('/protected', authenticateJWT, (req, res) => {
+  res.json({ message: "This is a protected route", user: req.user });
+});
+
+
 module.exports = router;
