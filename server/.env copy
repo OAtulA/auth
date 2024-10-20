@@ -1,0 +1,22 @@
+NODE_ENV="development"
+PORT=3002
+MONGO_URI="mongodb://localhost:27017/auth"
+
+JWT_SECRET="flsdfl2324"
+
+SESSION_SECRET="Gattu"
+# You can make SECURE_COOKIE=true if you want to use secure cookies in the production environment
+# After you enable the ssl certificate
+
+SECURE_COOKIE=false
+GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
+GOOGLE_CLIENT_SECRET=YOUR_SECRET
+GOOGLE_CALLBACK_URL="http://localhost:3002/auth/google/callback"
+
+# I have done my actual code 
+# GOOGLE_CALLBACK_URL="http://localhost: /auth/google/callback"
+
+# Now when calling it in code I have done is 
+
+# const PORT = process.env.PORT;
+# let GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL;
