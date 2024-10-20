@@ -3,9 +3,12 @@
  * - /google
  * - /google/callback
  */
-const authRouter = require("express").Router();
 
-const oauthPassport = require("../utils/oauth");
+import { Router } from "express";
+
+const authRouter = Router();
+
+import oauthPassport from "../utils/oauth";
 authRouter.get("/", (req, res) => {
   console.log("Route is hit for auth");
   res.json({
@@ -37,7 +40,8 @@ authRouter.get(
       const cookieSameSite = isCrossOrigin ? "none" : "lax";
       console.log("isCrossOrigin is ", isCrossOrigin);
       console.log("CookieSameSite is ", cookieSameSite);
-      res.cookie("token", req.user.token, {
+      // @ts-ignore
+      res.cookie("token", req?.user?.token, {
         path: "/",
         httpOnly: true,
         secure: true,
@@ -61,4 +65,4 @@ authRouter.get(
   }
 );
 
-module.exports = authRouter;
+export default authRouter;

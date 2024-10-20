@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+import { InferSchemaType, Schema, model } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -27,6 +27,10 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-const User = model("User", userSchema);
+type User0 = InferSchemaType<typeof userSchema>
+export type User = User0 & Document;
 
-module.exports = User;
+
+const User = model<User>("User", userSchema);
+
+export default User;

@@ -22,7 +22,7 @@
     
     /* Add the @ for the src folder */
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

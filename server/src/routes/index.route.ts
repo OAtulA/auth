@@ -1,4 +1,4 @@
-const authRouter = require("./auth.route");
+import authRouter from "./auth.route";
 /**
  * As of now the routes we handle here are
  *  /auth
@@ -11,22 +11,24 @@ const authRouter = require("./auth.route");
 const router = require("express").Router();
 
 router.use("/auth", authRouter);
-router.get("/profile", (req, res) => {
+router.get("/profile", (req:any, res:any) => {
   console.log("user is ", req.user);
   res.send(`Welcome ${req.user}`);
 });
 
+// @ts-ignore
 router.get("/logout", (req, res) => {
   req.logout(() => {
     res.redirect("/");
   });
 });
 
-const {authenticateJWT} = require('../utils/jwt')
+import { authenticateJWT } from '../utils/jwt';
 // Example of a protected route
+// @ts-ignore
 router.get('/protected', authenticateJWT, (req, res) => {
   res.json({ message: "This is a protected route", user: req.user });
 });
 
 
-module.exports = router;
+export default router;

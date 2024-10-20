@@ -1,14 +1,14 @@
 require("dotenv").config();
 
-const express = require("express");
-const cookieparser = require("cookie-parser");
-const passport = require("passport");
+import express from "express";
+import cookieparser from "cookie-parser";
+import passport from "passport";
 // const session = require("express-session");
 
 const app = express();
-const { connect } = require("mongoose");
+import { connect } from "mongoose";
 
-const cors = require("cors");
+import cors from "cors";
 
 /**
  * To keep the code clean, we have created a function to call app.use()
@@ -32,17 +32,19 @@ const appUseConfig = () => {
 };
 appUseConfig();
 
-const connectDB =()=> connect(process.env.MONGO_URI,).then((val)=>
+
+const MONGO_URI: string = process.env.MONGO_URI as string;
+const connectDB =()=> connect(MONGO_URI,).then((val)=>
   console.log("Our db is connected")
 ).catch((err)=>{
   console.error('We could not connect to db')
-  exist(1)
+  process.exit(1)
 });
 
 connectDB()
 
 
-const router = require("./routes/index.route");
+import router from "./routes/index.route";
 
 app.get("/", (_req, res) => {
   res.send("<a href='/auth/google'>Login with Google</a>");

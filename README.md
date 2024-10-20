@@ -11,3 +11,4 @@ I am trying to implement the auth using passport.js
 
 - [✔️] make the client and use this.
 - [] Add the ts in backend
+    - [] Add the Request type with user too
