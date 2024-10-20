@@ -19,7 +19,7 @@ function authenticateJWT(req, res, next) {
                 next(); // Proceed to next middleware or route handler
             });
         } else {
-            res.send("No token found"); // Unauthorized if no token is present
+            res.json({message:"No token found"}); // Unauthorized if no token is present
         }
     } catch (err) {
         console.log("error is ", err);

@@ -11,9 +11,9 @@ const authRouter = require("./auth.route");
 const router = require("express").Router();
 
 router.use("/auth", authRouter);
-
 router.get("/profile", (req, res) => {
-  res.send(`Welcome ${req.user.displayName}`);
+  console.log("user is ", req.user);
+  res.send(`Welcome ${req.user}`);
 });
 
 router.get("/logout", (req, res) => {

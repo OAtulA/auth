@@ -24,7 +24,8 @@ const appUseConfig = () => {
   // );
   app.use(express.json())
   app.use(express.urlencoded({extended:true}))
-  app.use(cors({origin:["http://localhost:3000","http://localhost:5173", "http://localhost:3002","*"], credentials: true}));
+  const corsOrigin =["http://localhost:3000","http://localhost:5173", "http://localhost:3002", "http://127.0.0.1:5500","*"]
+  app.use(cors({origin:corsOrigin, credentials: true}));
   app.use(cookieparser())
   app.use(passport.initialize());
   // app.use(passport.session());

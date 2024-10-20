@@ -28,26 +28,36 @@ authRouter.get(
     session: false,
   }),
   (req, res) => {
-    // To check the origin and based on that toggle the cookie option
-    const isCrossOrigin =
-      req?.headers?.origin && req?.headers?.origin !== "http://localhost:5173";
-    const cookieSameSite = isCrossOrigin ? "none" : "lax";
-    console.log("isCrossOrigin is ", isCrossOrigin);
-    console.log("CookieSameSite is ", cookieSameSite);
-    res.cookie("token", req.user.token, {
-      path: "/",
-      httpOnly: true,
-      secure: true,
-      maxAge: 5*60*1000,
-      sameSite: "none",
-      domain: "localhost",
-    });
-    res.json({
-      message: "User auth done",
-      token: req.user.token,
-      user: req.user.user,
-    });
-    // res.redirect("/profile");
+    try {
+      // To check the origin and based on that toggle the cookie option
+      const isCrossOrigin =
+        req?.headers?.origin &&
+        req?.headers?.origin !== "http://localhost:5173";
+        console.log('\n \n headers are', req.headers,'\n')
+      const cookieSameSite = isCrossOrigin ? "none" : "lax";
+      console.log("isCrossOrigin is ", isCrossOrigin);
+      console.log("CookieSameSite is ", cookieSameSite);
+      res.cookie("token", req.user.token, {
+        path: "/",
+        httpOnly: true,
+        secure: true,
+        maxAge: 5 * 60 * 1000,
+        sameSite: "none",
+        domain: "localhost",
+      });
+      
+      // ⚠️ We can send the cookie as res if its an android or ios app
+      // res.json({
+      //   message: "User auth done",
+      //   token: req.user.token,
+      //   user: req.user.user,
+      // });
+
+    // This is the redirect to the frontend and it closes the popup its the frontend part
+      res.redirect("http://localhost:5173/close");
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 

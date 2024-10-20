@@ -9,5 +9,5 @@ I am trying to implement the auth using passport.js
 
 ## TODO
 
--[] make the client and use this.
-
+- [✔️] make the client and use this.
+- [] Add the ts in backend
