@@ -14,6 +14,7 @@ function authenticateJWT(req, res, next) {
                 if (err) {
                     return res.json({message: "Invalid token"});
                 }
+                // 💡📝 I need to grab the user from the db here and set it to the req.user
                 req.user = user; // Attach user info to request
                 next(); // Proceed to next middleware or route handler
             });
