@@ -28,9 +28,9 @@ const userSchema = new Schema(
 );
 
 type User0 = InferSchemaType<typeof userSchema>
-export type User = User0 & Document;
+export type UserType = User0 & Document;
 
 
-const User = model<User>("User", userSchema);
+const User = model<UserType>("User", userSchema);
 
-export default User;
+export default User

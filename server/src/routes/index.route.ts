@@ -10,24 +10,26 @@ import authRouter from "./auth.route";
  */
 const router = require("express").Router();
 
+import { Request, Response } from "express";
+
 router.use("/auth", authRouter);
 router.get("/profile", (req:any, res:any) => {
   console.log("user is ", req.user);
   res.send(`Welcome ${req.user}`);
 });
 
-// @ts-ignore
-router.get("/logout", (req, res) => {
+router.get("/logout", (req:Request, res: Response) => {
   req.logout(() => {
+    // clear the token from the cookie
+    res.clearCookie("token");
     res.redirect("/");
   });
 });
 
 import { authenticateJWT } from '../utils/jwt';
 // Example of a protected route
-// @ts-ignore
-router.get('/protected', authenticateJWT, (req, res) => {
-  res.json({ message: "This is a protected route", user: req.user });
+router.get('/protected', authenticateJWT, (req:Request, res:Response) => {
+  res.json({ message: "This is a protected route", user: req?.user });
 });
 
 

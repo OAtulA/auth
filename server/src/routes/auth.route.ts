@@ -4,12 +4,12 @@
  * - /google/callback
  */
 
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
 const authRouter = Router();
 
 import oauthPassport from "../utils/oauth";
-authRouter.get("/", (req, res) => {
+authRouter.get("/", (_req:Request, res: Response) => {
   console.log("Route is hit for auth");
   res.json({
     message: "Route is hit for auth",
@@ -30,7 +30,7 @@ authRouter.get(
     failureRedirect: "/",
     session: false,
   }),
-  (req, res) => {
+  (req:Request, res: Response) => {
     try {
       // To check the origin and based on that toggle the cookie option
       const isCrossOrigin =
@@ -45,7 +45,7 @@ authRouter.get(
         path: "/",
         httpOnly: true,
         secure: true,
-        maxAge: 5 * 60 * 1000,
+        maxAge: 45 * 60 * 1000,
         sameSite: "none",
         domain: "localhost",
       });

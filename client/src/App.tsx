@@ -1,6 +1,7 @@
 
 function App() {
   const handleLogin = () => {
+
     const width = 600;
     const height = 700;
     const left = window.innerWidth / 2 - width / 2;
@@ -47,6 +48,27 @@ function App() {
     checkAuthStatus();
   };
 
+ const handleLogout= ()=>{
+  fetch("http://localhost:3002/logout", {
+      method: "GET",
+      credentials: "include", // Important for sending cookies
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Handle successful logout
+          console.log("User logged out successfully");
+          alert("User logged out successfully");
+          // Redirect to the home page or perform any other actions
+        } else {
+          // Handle logout failure
+          console.log("Logout failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during logout:", error);
+      });
+ }
+
   return (
     <>
     <title> Home Page</title>
@@ -72,7 +94,13 @@ function App() {
         {" "}
         Protected Route
       </button>
-      <div className="info" style={{ display: "none" }}></div>
+      <button
+        style={{ marginTop: "10rem", marginLeft: "10rem" }}
+        onClick={() => handleLogout()}
+      >
+        {" "}
+        Logout User
+      </button>
     </>
   );
 }

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import express from "express";
+import express , {Request, Response}from "express";
 import cookieparser from "cookie-parser";
 import passport from "passport";
 // const session = require("express-session");
@@ -46,8 +46,9 @@ connectDB()
 
 import router from "./routes/index.route";
 
-app.get("/", (_req, res) => {
+app.get("/", (req:Request, res:Response) => {
   res.send("<a href='/auth/google'>Login with Google</a>");
+  console.log("The client is ", req.client,"User is ", req.user)
 });
 
 app.use('/', router)
